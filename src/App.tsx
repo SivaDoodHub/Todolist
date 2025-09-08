@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Typography, Paper, Box } from "@mui/material";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import SnackbarAlert from "./SnackbarAlert";
 import type { Todo } from "./types";
-import "@fontsource-variable/golos-text";
 
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [editTodo, setEditTodo] = useState<Todo | null>(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: "" });
+
 
   const API_URL = "http://localhost:5000/todolist/apis";
 
@@ -25,7 +25,7 @@ export default function App() {
 const fetchTodos = async () => {
   try {
     const res = await axios.get(API_URL);
-    setTodos(res.data.tasks || []); // backend 'tasks' array
+    setTodos(res.data.tasks || []); 
   } catch (err) {
     console.error("Fetch Todos Error:", err);
     showSnackbar("Something went wrong");
